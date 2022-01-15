@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/myCoin"
+        android:icon="@drawable/home"
+        app:showAsAction="ifRoom"
+        android:title="home"/>
+
+    <item
+        android:id="@+id/debate"
+        android:icon="@drawable/plogging"
+        app:showAsAction="ifRoom"
+        android:title="plogging"/>
+
+    <item
+        android:id="@+id/feed"
+        android:icon="@drawable/crew_group"
+        app:showAsAction="ifRoom"
+        android:title="crew_group"/>
+
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile"
+        app:showAsAction="ifRoom"
+        android:title="profile"/>
+</menu>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HomeFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/home_info_container_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_outline_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/home_my_crew_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_crew"
+                android:textSize="15sp"
+                android:background="@drawable/btn_outline_white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="38dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
+
+            <TextView
+                android:id="@+id/home_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="이더 님의 \n 플로깅 기록"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_my_crew_tv"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:id="@+id/home_leaf_iv"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/small_leaf"
+                app:layout_constraintBottom_toBottomOf="@id/home_title_tv"
+                app:layout_constraintStart_toEndOf="@id/home_title_tv"/>
+
+            <TextView
+                android:id="@+id/home_count_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총횟수(회)"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                app:layout_constraintTop_toBottomOf="@id/home_title_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/home_distance_title_tv"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/home_distance_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총거리(km)"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                app:layout_constraintTop_toBottomOf="@id/home_title_tv"
+                app:layout_constraintStart_toEndOf="@id/home_count_title_tv"
+                app:layout_constraintEnd_toStartOf="@id/home_total_time_title_tv"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/home_total_time_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총시간"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                app:layout_constraintTop_toBottomOf="@id/home_title_tv"
+                app:layout_constraintStart_toEndOf="@id/home_distance_title_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/home_count_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/home_count_title_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/home_distance_num_tv"/>
+
+            <TextView
+                android:id="@+id/home_distance_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15.4"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintTop_toBottomOf="@id/home_distance_title_tv"
+                app:layout_constraintStart_toEndOf="@id/home_count_num_tv"
+                app:layout_constraintEnd_toStartOf="@id/home_total_time_title_tv"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/home_total_time_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:11"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintTop_toBottomOf="@id/home_total_time_title_tv"
+                app:layout_constraintStart_toEndOf="@id/home_distance_num_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="5dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/home_calnedar_cv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_outline_gray"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/home_info_container_cl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
