@@ -1,14 +1,18 @@
 package org.techtown.plogging_android
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import org.techtown.plogging_android.Dacorator.SaturdayDecorator
 import org.techtown.plogging_android.Dacorator.SundayDecorator
 import org.techtown.plogging_android.Dacorator.TodayDecorator
+import org.techtown.plogging_android.Plogging.MyRecordActivity
+import org.techtown.plogging_android.Plogging.PloggingFragment
 import org.techtown.plogging_android.databinding.FragmentHomeBinding
 import java.util.*
 
@@ -22,6 +26,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        setCalendar()
         return binding.root
     }
 
@@ -41,27 +46,14 @@ class HomeFragment : Fragment() {
         val saturdayDecorator = SaturdayDecorator()
         val todayDecorator = TodayDecorator(requireContext())
 
-        //binding.homeCalnedarCv.addDecorators(sundayDecorator, saturdayDecorator,todayDecorator)
-    }
+        binding.homeCalnedarCv.addDecorators(sundayDecorator, saturdayDecorator,todayDecorator)
 
-    //위치 권한 받는 코드
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>,
-                                            grantResults: IntArray) {
-        if (locationSource.onRequestPermissionsResult(requestCode, permissions,
-                grantResults)) {
-            if (!locationSource.isActivated) { // 권한 거부됨
-                naverMap.locationTrackingMode = LocationTrackingMode.None
-            }
-            return
+        binding.homeCalnedarCv.setOnDateChangedListener { widget, date, selected ->
+            val intent = Intent(requireContext(),MyRecordActivity::class.java)
+            startActivity(intent)
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
-    }
 
 
 }

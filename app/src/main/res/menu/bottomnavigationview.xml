@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/myCoin"
+        android:id="@+id/home"
         android:icon="@drawable/home"
         app:showAsAction="ifRoom"
         android:title="home"/>
 
     <item
-        android:id="@+id/debate"
+        android:id="@+id/plogging"
         android:icon="@drawable/plogging"
         app:showAsAction="ifRoom"
         android:title="plogging"/>
 
     <item
-        android:id="@+id/feed"
+        android:id="@+id/crew_group"
         android:icon="@drawable/crew_group"
         app:showAsAction="ifRoom"
         android:title="crew_group"/>
