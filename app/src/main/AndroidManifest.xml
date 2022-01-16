@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.techtown.plogging_android">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -12,7 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ploggingandroid">
+        android:theme="@style/Theme.Ploggingandroid"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="whateverString">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="flsadjqlpq" />
 
         <activity
             android:name=".MainActivity"
