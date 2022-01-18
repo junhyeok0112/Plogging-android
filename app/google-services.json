@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "943945004215",
+    "project_id": "plogging-android",
+    "storage_bucket": "plogging-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943945004215:android:a1d115a519a8b44678c932",
+        "android_client_info": {
+          "package_name": "org.techtown.plogging_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943945004215-je4lburunj1vvdvmgu2gkagdqt8n2gbt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7y9bUeb8zQ5PC2ueJeIGbZDBhOe2Yh80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943945004215-je4lburunj1vvdvmgu2gkagdqt8n2gbt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

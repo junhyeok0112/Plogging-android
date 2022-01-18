@@ -113,6 +113,5 @@ class CompletePloggingFragment : Fragment() {
             .addOnFailureListener{
                 Log.d("jun" , "저장 실패 "+ it)
             }
-
     }
 }

@@ -178,23 +178,6 @@
                 app:layout_constraintTop_toTopOf="@id/stop_circle"
                 app:layout_constraintBottom_toBottomOf="@id/stop_circle"/>
 
-            <ImageView
-                android:id="@+id/camera_circle"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/circle_white"
-                app:layout_constraintStart_toEndOf="@id/stop_circle"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_camera_alt_24"
-                app:layout_constraintStart_toStartOf="@id/camera_circle"
-                app:layout_constraintEnd_toEndOf="@id/camera_circle"
-                app:layout_constraintTop_toTopOf="@id/camera_circle"
-                app:layout_constraintBottom_toBottomOf="@id/camera_circle"/>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
