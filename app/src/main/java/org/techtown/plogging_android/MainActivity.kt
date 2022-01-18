@@ -2,10 +2,12 @@ package org.techtown.plogging_android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import org.techtown.plogging_android.Archive.MyArchiveFragment
+import org.techtown.plogging_android.Home.HomeFragment
 import org.techtown.plogging_android.Mycrew.MyCrewFragment
-import org.techtown.plogging_android.Plogging.CompletePloggingFragment
 import org.techtown.plogging_android.Plogging.PloggingFragment
 import org.techtown.plogging_android.databinding.ActivityMainBinding
+import org.techtown.plogging_android.util.myCheckPermission
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setListener()
+        myCheckPermission(this)         //파일 접근 권한 허용
         supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , HomeFragment())
             .commit()
     }

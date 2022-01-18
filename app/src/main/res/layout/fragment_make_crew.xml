@@ -3,7 +3,221 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MakeCrewFragment">
+
+    <ImageView
+        android:id="@+id/make_crew_preview_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/preview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/make_crew_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="크루 개설"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/make_crew_info_input_container_cl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/make_crew_title_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:background="#1AC6E872">
+
+
+        <TextView
+            android:id="@+id/make_crew_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="크루 이름"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:id="@+id/make_crew_input_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_name_tv"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_outline_white"/>
+
+        <TextView
+            android:id="@+id/make_crew_introduce_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="크루 소개"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_input_name_et"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:id="@+id/make_crew_input_introduce_et"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_introduce_tv"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_outline_white"/>
+
+        <TextView
+            android:id="@+id/make_crew_region_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="활동 지역"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_input_introduce_et"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"/>
+
+        <Spinner
+            android:id="@+id/make_crew_region_select_sp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_region_tv"
+            android:background="@drawable/btn_outline_white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:entries="@array/region_list"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:spinnerMode="dropdown"/>
+
+        <TextView
+            android:id="@+id/make_crew_personnel_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="활동 인원"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_region_select_sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"/>
+
+        <Spinner
+            android:id="@+id/make_crew_personnel_select_sp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_personnel_tv"
+            android:background="@drawable/btn_outline_white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:entries="@array/personal_list"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:spinnerMode="dropdown"/>
+
+
+        <TextView
+            android:id="@+id/make_crew_date_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="활동 날짜"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_personnel_select_sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:id="@+id/make_crew_date_et"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@id/make_crew_date_title_tv"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_date_title_tv"
+            android:background="@drawable/btn_outline_white"/>
+
+        <ImageButton
+            android:id="@+id/make_crew_calendar_select_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/calendar"
+            app:layout_constraintStart_toEndOf="@id/make_crew_date_et"
+            app:layout_constraintTop_toTopOf="@id/make_crew_date_et"
+            app:layout_constraintBottom_toBottomOf="@id/make_crew_date_et"/>
+
+        <TextView
+            android:id="@+id/make_crew_call_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오픈채팅/구글폼/연락처"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_calendar_select_btn"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"/>
+
+        <EditText
+            android:id="@+id/make_crew_call_input_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_call_tv"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_outline_white"/>
+
+        <Button
+            android:id="@+id/make_crew_make_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개설하기"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_outline_light_green"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_crew_call_input_et"
+            android:layout_marginTop="20dp"/>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

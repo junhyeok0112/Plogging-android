@@ -22,7 +22,7 @@ class PloggingFragment : Fragment(),OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPloggingBinding.inflate(inflater , container , false)
-
+        setListener()
         val fm = childFragmentManager
         val mapFragment = fm.findFragmentById(R.id.map) as MapFragment?
             ?: MapFragment.newInstance().also {
@@ -76,9 +76,18 @@ class PloggingFragment : Fragment(),OnMapReadyCallback {
     }
 
     fun setListener(){
+
+        binding.ploggingStartBtn.setOnClickListener {
+            binding.ploggingStartBtn.visibility = View.GONE
+            binding.btnContainer.visibility = View.VISIBLE
+        }
+
+
         binding.stopCircle.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , CompletePloggingFragment())
                 .commit()
+            binding.ploggingStartBtn.visibility = View.VISIBLE
+            binding.btnContainer.visibility = View.GONE
         }
     }
 

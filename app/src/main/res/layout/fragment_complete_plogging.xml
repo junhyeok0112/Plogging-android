@@ -60,8 +60,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:src="@drawable/temp_map"/>
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
                 <TextView
                     android:id="@+id/complete_aks_tv"
@@ -152,7 +151,7 @@
             android:text="예"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:background="@drawable/btn_outline_green2"
+            android:background="@drawable/btn_outline_dark_green"
             android:layout_marginTop="20dp"/>
 
         <Button

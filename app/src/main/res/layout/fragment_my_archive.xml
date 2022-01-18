@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MyArchiveFragment">
+    tools:context=".Archive.MyArchiveFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/archive_banner_cl"
@@ -13,14 +13,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#CCFBFFA3">
+        android:background="#0D625E">
 
         <TextView
             android:id="@+id/archive_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이더 님의\n플로깅 아카이브"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:layout_marginStart="30dp"
             app:layout_constraintStart_toStartOf="parent"
