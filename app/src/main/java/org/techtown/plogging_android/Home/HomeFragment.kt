@@ -10,7 +10,9 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import org.techtown.plogging_android.Dacorator.SaturdayDecorator
 import org.techtown.plogging_android.Dacorator.SundayDecorator
 import org.techtown.plogging_android.Dacorator.TodayDecorator
+import org.techtown.plogging_android.Mycrew.MyCrewFragment
 import org.techtown.plogging_android.Plogging.MyRecordActivity
+import org.techtown.plogging_android.R
 import org.techtown.plogging_android.databinding.FragmentHomeBinding
 import java.util.*
 
@@ -25,6 +27,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         setCalendar()
+        setListener()
         return binding.root
     }
 
@@ -52,6 +55,12 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun setListener(){
+        binding.mainMyCrewBtnTv.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyCrewFragment())
+                        .commit()
+        }
+    }
 
 
 }

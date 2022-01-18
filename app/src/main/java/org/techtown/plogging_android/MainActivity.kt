@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.crew_group ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyCrewFragment())
-                        .commit()
-                    return@setOnItemSelectedListener true
+//                    supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyCrewFragment())
+//                        .commit()
+//                    return@setOnItemSelectedListener true
                 }
                 R.id.profile->{
                     supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyArchiveFragment())
