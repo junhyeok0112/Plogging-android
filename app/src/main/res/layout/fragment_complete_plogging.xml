@@ -1,99 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Plogging.CompletePloggingFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Plogging.CompletePloggingFragment">
-
-    <TextView
-        android:id="@+id/complete_title_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="플로깅 완료"
-        android:textColor="#0D625E"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/complete_logo_iv"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/complete_logo"
-        app:layout_constraintBottom_toBottomOf="@id/complete_title_iv"
-        app:layout_constraintStart_toEndOf="@id/complete_title_iv" />
-
-
-    <ImageView
-        android:id="@+id/complete_map_iv"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:src="@drawable/temp_map"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/complete_logo_iv" />
-
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/complete_info_container_cl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4DF0F0F0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/complete_map_iv">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/complete_record_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="플로깅 기록"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/complete_line_iv"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:src="@drawable/horizontal_line"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/complete_record_title_tv" />
-
-        <TextView
-            android:id="@+id/complete_info_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="2022/01/14(금) 22:50~23:02 0.5km, 15분, 50kcal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/complete_line_iv" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/complete_check_container_cl"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/complete_info_container_cl">
-
-        <TextView
-            android:id="@+id/complete_save_title_iv"
+            android:id="@+id/complete_title_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="아카이브에 저장"
+            android:text="플로깅 완료"
             android:textColor="#0D625E"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -101,33 +23,118 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/complete_save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_outline_dark_green"
-            android:text="예"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@id/complete_no_save_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/complete_save_title_iv" />
+        <ImageView
+            android:id="@+id/complete_logo_iv"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/complete_logo"
+            app:layout_constraintBottom_toBottomOf="@id/complete_title_iv"
+            app:layout_constraintStart_toEndOf="@id/complete_title_iv" />
 
-        <Button
-            android:id="@+id/complete_no_save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_outline_gray"
-            android:text="아니오"
-            android:textColor="#C4C4C4"
-            android:textSize="20sp"
+
+        <ImageView
+            android:id="@+id/complete_map_iv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/temp_map"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/complete_save_btn"
-            app:layout_constraintTop_toTopOf="@id/complete_save_btn" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/complete_logo_iv" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/complete_info_container_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4DF0F0F0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/complete_map_iv">
+
+            <TextView
+                android:id="@+id/complete_record_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="플로깅 기록"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/complete_line_iv"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:src="@drawable/horizontal_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/complete_record_title_tv" />
+
+            <TextView
+                android:id="@+id/complete_info_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="2022/01/14(금) 22:50~23:02 0.5km, 15분, 50kcal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/complete_line_iv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/complete_check_container_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/complete_info_container_cl">
+
+            <TextView
+                android:id="@+id/complete_save_title_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="아카이브에 저장"
+                android:textColor="#0D625E"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/complete_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_outline_dark_green"
+                android:text="예"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@id/complete_no_save_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/complete_save_title_iv" />
+
+            <Button
+                android:id="@+id/complete_no_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_outline_gray"
+                android:text="아니오"
+                android:textColor="#C4C4C4"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/complete_save_btn"
+                app:layout_constraintTop_toTopOf="@id/complete_save_btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

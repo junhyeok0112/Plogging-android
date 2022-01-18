@@ -41,14 +41,13 @@ class CompletePloggingFragment : Fragment() {
     }
 
     fun setListener(){
-        binding.completeAuthIv.setOnClickListener {
+        binding.completeMapIv.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)             //갤러리에서 사진 가져오기 실행
             intent.setDataAndType(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 "image/*"
             )
             registerLauncher.launch(intent)                     //이미지 불러와서 이미지 뷰에 로딩시켜줌
-            binding.completeAksTv.visibility = View.GONE
         }
 
         binding.completeSaveBtn.setOnClickListener {
@@ -66,7 +65,7 @@ class CompletePloggingFragment : Fragment() {
                 .with(requireContext())
                 .load(result.data?.data)
                 .apply(RequestOptions().transforms(CenterCrop()))
-                .into(binding.completeAuthIv)
+                .into(binding.completeMapIv)
 
             //이미지 uri 가져오는 부분
             val cursor = requireActivity().contentResolver.query(result.data?.data as Uri,        //실질적으로 쿼리하는 코드 ,API 인자에 우리가 찾고자 하는 데이터 정보를 넣음 , 리턴 타입은 cursor 이것을 이용해서 데이터 확인가능
