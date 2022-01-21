@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Plogging.CompletePloggingFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F0F0F0">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,67 +32,165 @@
             app:layout_constraintBottom_toBottomOf="@id/complete_title_iv"
             app:layout_constraintStart_toEndOf="@id/complete_title_iv" />
 
-
         <ImageView
-            android:id="@+id/complete_map_iv"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:src="@drawable/temp_map"
-            android:scaleType="fitXY"
-            android:layout_marginTop="10dp"
+            android:id="@+id/complete_camera_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/complete_logo_iv" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_baseline_camera_alt_24"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/complete_info_container_cl"
+            android:id="@+id/complete_map_container_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#4DF0F0F0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/complete_map_iv">
+            app:layout_constraintTop_toBottomOf="@id/complete_logo_iv">
 
-            <TextView
-                android:id="@+id/complete_record_title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="플로깅 기록"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/complete_line_iv"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/complete_map_vp"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:src="@drawable/horizontal_line"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="400dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/complete_record_title_tv" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/complete_info_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="2022/01/14(금) 22:50~23:02 0.5km, 15분, 50kcal"
-                app:layout_constraintEnd_toEndOf="parent"
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/complete_indicators"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                app:ci_drawable="@drawable/white_radius_circle_indicator"
+                app:ci_drawable_unselected="@drawable/black_radius_circle_indicator"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/complete_line_iv" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/complete_map_vp"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/complete_check_container_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/semicricle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/complete_info_container_cl">
+            app:layout_constraintTop_toBottomOf="@id/complete_map_container_cl"
+            android:paddingBottom="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/complete_info_container_cl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/complete_kcal_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/complete_line_iv1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"/>
+
+                <ImageView
+                    android:id="@+id/complete_line_iv1"
+                    android:layout_width="3dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/vertical_line"
+                    app:layout_constraintTop_toTopOf="@id/complete_kcal_num"
+                    app:layout_constraintStart_toEndOf="@id/complete_kcal_num"
+                    app:layout_constraintBottom_toBottomOf="@id/complete_kcal_num"
+                    app:layout_constraintEnd_toStartOf="@id/complete_distance_num"/>
+
+
+                <TextView
+                    android:id="@+id/complete_distance_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/complete_line_iv1"
+                    app:layout_constraintEnd_toStartOf="@id/complete_line_iv2"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"/>
+
+                <ImageView
+                    android:id="@+id/complete_line_iv2"
+                    android:layout_width="3dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/vertical_line"
+                    app:layout_constraintTop_toTopOf="@id/complete_distance_num"
+                    app:layout_constraintStart_toEndOf="@id/complete_distance_num"
+                    app:layout_constraintBottom_toBottomOf="@id/complete_distance_num"
+                    app:layout_constraintEnd_toStartOf="@id/complete_time_num"/>
+
+                <TextView
+                    android:id="@+id/complete_time_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/complete_line_iv2"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:id="@+id/complete_kcal_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="칼로리(kcal)"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@id/complete_kcal_num"
+                    app:layout_constraintStart_toStartOf="@id/complete_kcal_num"
+                    app:layout_constraintEnd_toEndOf="@id/complete_kcal_num"/>
+
+                <TextView
+                    android:id="@+id/complete_distance_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="거리(km)"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@id/complete_distance_num"
+                    app:layout_constraintStart_toStartOf="@id/complete_distance_num"
+                    app:layout_constraintEnd_toEndOf="@id/complete_distance_num"/>
+
+                <TextView
+                    android:id="@+id/complete_time_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="시간(분)"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@id/complete_time_num"
+                    app:layout_constraintStart_toStartOf="@id/complete_time_num"
+                    app:layout_constraintEnd_toEndOf="@id/complete_time_num"/>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/complete_save_title_iv"
@@ -104,7 +203,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/complete_info_container_cl" />
 
             <Button
                 android:id="@+id/complete_save_btn"
@@ -132,9 +231,26 @@
                 app:layout_constraintTop_toTopOf="@id/complete_save_btn" />
 
 
+<!--            <ImageView-->
+<!--                android:id="@+id/test"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
+<!--            <ImageView-->
+<!--                android:id="@+id/test2"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/test"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>

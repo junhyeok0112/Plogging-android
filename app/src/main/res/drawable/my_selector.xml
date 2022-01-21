@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:exitFadeDuration="@android:integer/config_shortAnimTime">
+    <item android:state_checked="true" android:drawable="@drawable/btn_outline_green"/>
+    <item android:state_pressed="true" android:drawable="@drawable/btn_outline_green"/>
+    <item android:drawable="@color/main_color"/>
 
 </selector>
