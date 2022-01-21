@@ -208,7 +208,7 @@ class PloggingFragment : Fragment(),OnMapReadyCallback {
                     putParcelable("snapshot" , bitmap)
                 }
             })
-                .commitAllowingStateLoss()
+                .addToBackStack(null).commitAllowingStateLoss()
 
         }
         walk.interrupt()
@@ -291,7 +291,12 @@ class PloggingFragment : Fragment(),OnMapReadyCallback {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        walk.interrupt()
+        // 초기화 되었는지 확인하는 방법
+        // ::변수명.isInitialized
+        if(::walk.isInitialized){
+            walk.interrupt()
+        }
+
     }
 
 }

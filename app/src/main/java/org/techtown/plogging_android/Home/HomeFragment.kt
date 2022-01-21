@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
     fun setListener(){
         binding.mainMyCrewBtnTv.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyCrewFragment())
-                        .commit()
+                        .addToBackStack(null).commit()
         }
     }
 
