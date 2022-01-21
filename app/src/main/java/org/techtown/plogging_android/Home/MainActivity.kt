@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setListener(){
+
+
         binding.mainBottomnaviBnv.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home ->{
