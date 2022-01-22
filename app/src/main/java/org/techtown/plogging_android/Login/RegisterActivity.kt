@@ -13,7 +13,14 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import org.techtown.plogging_android.Login.Retrofit.LoginRetroInterface
+import org.techtown.plogging_android.Login.Retrofit.SignUpGet
+import org.techtown.plogging_android.Login.Retrofit.User
 import org.techtown.plogging_android.databinding.ActivityRegisterBinding
+import org.techtown.plogging_android.getRetorfit
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class RegisterActivity: AppCompatActivity() {
@@ -30,37 +37,17 @@ class RegisterActivity: AppCompatActivity() {
         binding.btnRegister.setOnClickListener {
             Log.d(TAG, "회원가입 버튼 클릭")
 
-
-
             val id = binding.registerId.text.toString()
             val pw = binding.registerPw.text.toString()
             val intro = binding.editIntro.text.toString()
 
-
-
             // 유저가 항목을 다 채우지 않았을 경우
-
-
             Log.d("id" , "id")
             if (id.isEmpty() || pw.isEmpty() || intro.isEmpty()) {
                 dialog("빠짐없이 기입해 주세요.")
             } else {
-
-                // 회원가입 성공 토스트 메세지 띄우기
-                Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
-
-                // 유저가 입력한 id, pw를 쉐어드에 저장한다. 스틱코드 참고
-                val sharedPreference = getSharedPreferences("file name", Context.MODE_PRIVATE)
-                val editor = sharedPreference.edit()
-                editor.putString("id", id)
-                editor.putString("pw", pw)
-                editor.apply()
-
-
-                // 로그인 화면으로 이동
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                val user = User(intro,id,pw)
+                postUser(user)
             }
 
         }
@@ -110,6 +97,36 @@ class RegisterActivity: AppCompatActivity() {
              }
 
         }
+    }
+
+    fun postUser(user: User){     //회원 가입 코드
+        val userRetorfit = getRetorfit().create(LoginRetroInterface::class.java)
+
+        userRetorfit.postUser(user).enqueue(object : Callback<SignUpGet> {
+            override fun onResponse(call: Call<SignUpGet>, response: Response<SignUpGet>) {
+                val resp = response.body()!!
+                when(resp.code){
+                    1000 -> {
+                        // 회원가입 성공 토스트 메세지 띄우기
+                        Toast.makeText(this@RegisterActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                        // 로그인 화면으로 이동
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    2018 -> {
+                        Toast.makeText(this@RegisterActivity , "중복된 닉네임 입니다" , Toast.LENGTH_SHORT).show()
+                    }
+                    else ->{
+                        Log.d("signup" , "${resp.message}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<SignUpGet>, t: Throwable) {
+                Log.d("postUser" , "통신 실패 : ${t}")
+            }
+        })
     }
 
 

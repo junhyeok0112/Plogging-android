@@ -39,7 +39,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class CompletePloggingFragment : Fragment() ,CoroutineScope {
+class CompletePloggingFragment : Fragment() {
 
     lateinit var binding: FragmentCompletePloggingBinding
     lateinit var filePath: String                                        //capture path
@@ -50,14 +50,7 @@ class CompletePloggingFragment : Fragment() ,CoroutineScope {
     var docId : String = ""                                             //현재 저장하는 doc의 Id를 저장- >이걸로 url 가져옴
     var tempUrlList = ArrayList<String>()
     //코루틴을 위한 Scope 생성
-    private lateinit var job: Job
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.IO + job
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        job= Job()
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -293,7 +286,6 @@ class CompletePloggingFragment : Fragment() ,CoroutineScope {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        job.cancel()
     }
 
 }

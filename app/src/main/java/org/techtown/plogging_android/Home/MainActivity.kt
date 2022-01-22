@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.agatha_plog.RecruitFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.techtown.plogging_android.Archive.MyArchiveFragment
+import org.techtown.plogging_android.MyApplication
 import org.techtown.plogging_android.Mycrew.MyCrewFragment
 import org.techtown.plogging_android.Plogging.PloggingFragment
 import org.techtown.plogging_android.R
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         org.techtown.plogging_android.util.checkPermission(this)
         supportFragmentManager.beginTransaction().replace(R.id.main_container_fl, HomeFragment())
             .addToBackStack(null).commit()
+        Log.d("jwt" , "${MyApplication.jwt}")
     }
 
     fun setListener(){

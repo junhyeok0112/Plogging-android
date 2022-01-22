@@ -19,7 +19,8 @@
         tools:replace="android:appComponentFactory"
         android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
-        android:appComponentFactory="whateverString">
+        android:appComponentFactory="whateverString"
+        android:usesCleartextTraffic="true">
         <provider
             android:authorities="org.techtown.plogging_android"
             android:name="androidx.core.content.FileProvider"
