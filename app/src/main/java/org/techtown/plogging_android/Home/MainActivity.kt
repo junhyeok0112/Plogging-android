@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.example.agatha_plog.RecruitFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.techtown.plogging_android.Archive.MyArchiveFragment
+import org.techtown.plogging_android.Mycrew.MyCrewFragment
 import org.techtown.plogging_android.Plogging.PloggingFragment
 import org.techtown.plogging_android.R
+import org.techtown.plogging_android.RecruitCrew.CrewInfo.CrewInfoFragment
 import org.techtown.plogging_android.databinding.ActivityMainBinding
 import org.techtown.plogging_android.util.myCheckCameraPermission
 import org.techtown.plogging_android.util.myCheckPermission
@@ -41,10 +44,10 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack(null).commit()
                     return@setOnItemSelectedListener true
                 }
-                R.id.crew_group ->{
-//                    supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyCrewFragment(),"mycrew")
-//                        .commit()
-//                    return@setOnItemSelectedListener true
+                R.id.recruit_crew ->{
+                    supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , RecruitFragment(),"recruit_crew")
+                        .commit()
+                    return@setOnItemSelectedListener true
                 }
                 R.id.profile ->{
                     supportFragmentManager.beginTransaction().replace(R.id.main_container_fl, MyArchiveFragment(),"myarchive")
@@ -59,13 +62,13 @@ class MainActivity : AppCompatActivity() {
     fun updateBottomMenu(navigation: BottomNavigationView) {
         val tag1: Fragment? = supportFragmentManager.findFragmentByTag("home")
         val tag2: Fragment? = supportFragmentManager.findFragmentByTag("plogging")
-        val tag3: Fragment? = supportFragmentManager.findFragmentByTag("mycrew")
+        val tag3: Fragment? = supportFragmentManager.findFragmentByTag("recruit_crew")
         val tag4: Fragment? = supportFragmentManager.findFragmentByTag("myarchive")
         Log.d("navi", "실행")
 
         if(tag1 != null && tag1.isVisible()) navigation.menu.findItem(R.id.home).setChecked(true)
         else if(tag2 != null && tag2.isVisible()) navigation.menu.findItem(R.id.plogging).setChecked(true)
-        else if(tag3 != null && tag3.isVisible()) navigation.menu.findItem(R.id.crew_group).setChecked(true)
+        else if(tag3 != null && tag3.isVisible()) navigation.menu.findItem(R.id.recruit_crew).setChecked(true)
         else if(tag4 != null && tag4.isVisible()) navigation.menu.findItem(R.id.profile).setChecked(true)
 
     }

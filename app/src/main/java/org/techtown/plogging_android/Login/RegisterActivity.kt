@@ -1,12 +1,15 @@
 package org.techtown.plogging_android.Login
 
+import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.icu.number.NumberFormatter.with
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -19,8 +22,11 @@ class RegisterActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setListener()
         setContentView(binding.root) // * setContentView에는 binding.root를 꼭 전달
+    }
 
+    fun setListener(){
         binding.btnRegister.setOnClickListener {
             Log.d(TAG, "회원가입 버튼 클릭")
 
@@ -36,10 +42,9 @@ class RegisterActivity: AppCompatActivity() {
 
 
             Log.d("id" , "id")
-            if (id.isEmpty()) {
+            if (id.isEmpty() || pw.isEmpty() || intro.isEmpty()) {
                 dialog("빠짐없이 기입해 주세요.")
             } else {
-
 
                 // 회원가입 성공 토스트 메세지 띄우기
                 Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
@@ -50,31 +55,29 @@ class RegisterActivity: AppCompatActivity() {
                 editor.putString("id", id)
                 editor.putString("pw", pw)
                 editor.apply()
-                
+
 
                 // 로그인 화면으로 이동
-                val returnIntent = Intent()
-                setResult(RESULT_OK, returnIntent)
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
                 finish()
             }
 
         }
-    }
 
+        binding.signupProfileIv.setOnClickListener{
+            val intent = Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type = "image/*"
+            startActivityForResult(intent,30)
+
+        }
+    }
     // 회원가입 실패시 다이얼로그를 띄워주는 메소드
     private fun dialog(type: String) {
         val dialog = AlertDialog.Builder(this)
 
-        // 작성 안한 항목이 있을 경우
-        if (type.equals("blank")) {
-            dialog.setTitle("회원가입 실패")
-            dialog.setMessage("입력란을 모두 작성해주세요")
-        }
-        // 입력한 비밀번호가 다를 경우
-        else if (type.equals("not same")) {
-            dialog.setTitle("회원가입 실패")
-            dialog.setMessage("비밀번호가 다릅니다")
-        }
+        dialog.setTitle("회원가입 실패")
+        dialog.setMessage("입력란을 모두 작성해주세요")
 
         val dialog_listener = object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
@@ -88,6 +91,28 @@ class RegisterActivity: AppCompatActivity() {
         dialog.setPositiveButton("확인", dialog_listener)
         dialog.show()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 30 && resultCode == Activity.RESULT_OK){
+            try{
+                var inputStream = contentResolver.openInputStream(data!!.data!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream , null ,null)
+                inputStream!!.close()
+                inputStream = null
+                bitmap?.let{
+                    binding.signupProfileIv.setImageBitmap(bitmap)
+                } ?: let{
+                    Log.d("Profile", "불러오기 실패")
+                }
+            } catch(e: Exception){
+               e.printStackTrace()
+             }
+
+        }
+    }
+
+
 
 }
 

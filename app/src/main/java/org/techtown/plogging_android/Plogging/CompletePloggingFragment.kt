@@ -269,27 +269,27 @@ class CompletePloggingFragment : Fragment() ,CoroutineScope {
         return Uri.parse(path)
     }
 
-    //다운로드 Url 리턴 받기
-    fun getUrl(){
-        Log.d("getUrl" ,"실행")
-        val storage = MyApplication.storage
-        val storageRef = storage.reference
-        val imgRef_map = storageRef.child("images/${docId}_map.jpg")
-        imgRef_map.downloadUrl.addOnSuccessListener {
-            urlList.add(it.toString())
-            Log.d("getUrl" , "Map url 받기 성공")
-        }.addOnFailureListener {
-            Log.d("getUrl" , "Map Url 받기 실패")
-        }
-
-        val imgRef_auth = storageRef.child("images/${docId}_auth.jpg")
-        imgRef_auth.downloadUrl.addOnSuccessListener {
-            urlList.add(it.toString())
-            Log.d("getUrl" , "Auth url 받기 성공")
-        }.addOnFailureListener {
-            Log.d("getUrl" , "Auth url 받기 실패")
-        }
-    }
+//    //다운로드 Url 리턴 받기
+//    fun getUrl(){
+//        Log.d("getUrl" ,"실행")
+//        val storage = MyApplication.storage
+//        val storageRef = storage.reference
+//        val imgRef_map = storageRef.child("images/${docId}_map.jpg")
+//        imgRef_map.downloadUrl.addOnSuccessListener {
+//            urlList.add(it.toString())
+//            Log.d("getUrl" , "Map url 받기 성공")
+//        }.addOnFailureListener {
+//            Log.d("getUrl" , "Map Url 받기 실패")
+//        }
+//
+//        val imgRef_auth = storageRef.child("images/${docId}_auth.jpg")
+//        imgRef_auth.downloadUrl.addOnSuccessListener {
+//            urlList.add(it.toString())
+//            Log.d("getUrl" , "Auth url 받기 성공")
+//        }.addOnFailureListener {
+//            Log.d("getUrl" , "Auth url 받기 실패")
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -14,10 +14,10 @@
         android:title="plogging"/>
 
     <item
-        android:id="@+id/crew_group"
+        android:id="@+id/recruit_crew"
         android:icon="@drawable/crew_group"
         app:showAsAction="ifRoom"
-        android:title="crew_group"/>
+        android:title="recruit_crew"/>
 
 
     <item

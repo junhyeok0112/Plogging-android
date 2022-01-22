@@ -5,18 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".Login.RegisterActivity">
 
     <TextView
         android:id="@+id/plogging"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:text="Plogging"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/signup"
         app:layout_constraintTop_toTopOf="parent"
         />
     <TextView
@@ -24,15 +23,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="Plogging"
+        android:text="회원가입하기"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plogging"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/plogging" />
 
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/signup_profile_iv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_image"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/camera"
+        app:layout_constraintEnd_toEndOf="@id/signup_profile_iv"
+        app:layout_constraintBottom_toBottomOf="@id/signup_profile_iv"/>
 
     <EditText
         android:id="@+id/register_id"
@@ -77,13 +93,15 @@
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:text="가입하기"
+        android:background="@drawable/btn_outline_green"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_intro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

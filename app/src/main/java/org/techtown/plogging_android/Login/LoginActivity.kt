@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.common.api.internal.RegisterListenerMethod
+import org.techtown.plogging_android.Home.MainActivity
 import org.techtown.plogging_android.databinding.ActivityLoginBinding
 
 
@@ -33,19 +34,24 @@ class LoginActivity : AppCompatActivity() {
             val savedPw = sharedPreference.getString("pw", "")
 
             // 유저가 입력한 id, pw값과 쉐어드로 불러온 id, pw값 비교
-            if (id == savedId && pw == savedPw) {
+            if (id == savedId && pw == savedPw && id !="" && pw != "") {
                 // 로그인 성공 다이얼로그 보여주기
                 dialog("success")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             } else {
                 // 로그인 실패 다이얼로그 보여주기
                 dialog("fail")
             }
+
         }
 
         // 회원가입 버튼
         binding.btnGoRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
     // 로그인 성공/실패 시 다이얼로그를 띄워주는 메소드
@@ -73,6 +79,8 @@ class LoginActivity : AppCompatActivity() {
         dialog.setPositiveButton("확인",dialog_listener)
         dialog.show()
     }
+
+
 }
 
 
