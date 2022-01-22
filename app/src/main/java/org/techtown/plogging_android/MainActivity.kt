@@ -2,6 +2,7 @@ package org.techtown.plogging_android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.agatha_plog.RecruitFragment
 import org.techtown.plogging_android.Archive.MyArchiveFragment
 import org.techtown.plogging_android.Home.HomeFragment
 import org.techtown.plogging_android.Mycrew.MyCrewFragment
@@ -36,10 +37,10 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     return@setOnItemSelectedListener true
                 }
-                R.id.crew_group ->{
-//                    supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyCrewFragment())
-//                        .commit()
-//                    return@setOnItemSelectedListener true
+                R.id.recruit_crew ->{
+                    supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , RecruitFragment())
+                        .addToBackStack(null).commit()
+                    return@setOnItemSelectedListener true
                 }
                 R.id.profile->{
                     supportFragmentManager.beginTransaction().replace(R.id.main_container_fl , MyArchiveFragment())

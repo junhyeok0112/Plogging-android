@@ -6,7 +6,7 @@ import android.os.Bundle
 import org.techtown.plogging_android.databinding.ActivityMainBinding
 
 
-class MainActivity0 : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
