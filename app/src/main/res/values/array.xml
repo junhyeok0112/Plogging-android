@@ -8,15 +8,6 @@
         <item>부산</item>
         <item>대구</item>
         <item>광주</item>
-        <item>세종</item>
-        <item>강원도</item>
-        <item>경기도</item>
-        <item>충남</item>
-        <item>충북</item>
-        <item>전남</item>
-        <item>전북</item>
-        <item>경남</item>
-        <item>경북</item>
         <item>제주도</item>
     </string-array>
     <string-array name="personal_list">
