@@ -1,4 +1,4 @@
-package org.techtown.plogging_android.Plogging
+package org.techtown.plogging_android.Home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

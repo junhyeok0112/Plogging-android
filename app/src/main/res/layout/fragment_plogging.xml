@@ -12,11 +12,17 @@
         android:layout_height="0dp"
         android:name="com.naver.maps.map.MapFragment"
         app:navermap_mapType="Basic"
-        app:navermap_locationButtonEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.naver.maps.map.widget.LocationButtonView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plogging_menu_cl"
@@ -151,6 +157,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
+                android:id="@+id/pause_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_pause_24"
@@ -158,6 +165,18 @@
                 app:layout_constraintEnd_toEndOf="@id/pause_circle"
                 app:layout_constraintTop_toTopOf="@id/pause_circle"
                 app:layout_constraintBottom_toBottomOf="@id/pause_circle"/>
+
+            <ImageView
+                android:id="@+id/play_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_play_arrow_24"
+                app:layout_constraintStart_toStartOf="@id/pause_circle"
+                app:layout_constraintEnd_toEndOf="@id/pause_circle"
+                app:layout_constraintTop_toTopOf="@id/pause_circle"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/pause_circle"/>
+
 
             <ImageView
                 android:id="@+id/stop_circle"
