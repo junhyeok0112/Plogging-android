@@ -9,7 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.Toast
+import org.techtown.plogging_android.RecruitCrew.Retrofit.RecruitRetrofitInterface
+import org.techtown.plogging_android.RecruitCrew.Retrofit.makreCrew.Crew
+import org.techtown.plogging_android.RecruitCrew.Retrofit.makreCrew.MakeCrewResponse
 import org.techtown.plogging_android.databinding.FragmentMakeCrewBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 
@@ -41,6 +48,34 @@ class MakeCrewFragment : Fragment() {
             }, year, month, date)
             dlg.show()
         }
+
+        binding.makeCrewMakeBtn.setOnClickListener {
+            var name =binding.makeCrewInputNameEt.text.toString()
+            var contacts =  "010-8793-2422"
+            var descr = binding.makeCrewInputIntroduceEt.text.toString()
+            var region = binding.makeCrewRegionSelectSp.selectedItem.toString()
+            var howmany = binding.makeCrewPersonnelSelectSp.selectedItem.toString().toInt()
+            var targetDay = binding.makeCrewDateEt.text.toString()
+            val crew = Crew(contacts,"",descr,howmany,name, region,targetDay)
+            makeCrew(crew)
+        }
+
+    }
+
+    fun makeCrew(crew: Crew){
+        val makeService = getRetorfit().create(RecruitRetrofitInterface::class.java)
+        makeService.makeCrew(MyApplication.jwt!!,crew).enqueue(object : Callback<MakeCrewResponse>{
+            override fun onResponse(
+                call: Call<MakeCrewResponse>,
+                response: Response<MakeCrewResponse>
+            ) {
+                Toast.makeText(requireContext(),"개설 성공",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<MakeCrewResponse>, t: Throwable) {
+                Toast.makeText(requireContext(),"개설실패",Toast.LENGTH_SHORT).show()
+            }
+        })
 
     }
 

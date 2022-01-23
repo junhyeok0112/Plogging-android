@@ -36,9 +36,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        setCalendar()
+
         setListener()
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setCalendar()
     }
 
     fun setCalendar(){
@@ -53,11 +58,13 @@ class HomeFragment : Fragment() {
             val stringDate = dateToString(date.date)
             Log.d("date", "${stringDate}")
             var targetIdx:Int = 0
+
             for(res in homeResult.result.calendar){
                 if(res.date.substring(0,10) == stringDate){
                     targetIdx = res.plogIdx
                 }
             }
+
             val intent = Intent(requireContext(), MyRecordActivity::class.java)
             intent.putExtra("idx" , targetIdx)
             startActivity(intent)
@@ -107,7 +114,6 @@ class HomeFragment : Fragment() {
                       binding.homeCalnedarCv.addDecorators(EventDecorator(requireContext(), R.color.main_color , calendarDays))
                       bindInfo(homeResult)
 
-
                   }
                   2002 -> {
                       Log.d("home" , "유효하지 않은 JWT입니다.")
@@ -116,7 +122,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<HomeGetResult>, t: Throwable) {
-           
+
             }
         })
     }
@@ -128,5 +134,7 @@ class HomeFragment : Fragment() {
         binding.homeTotalTimeNumTv.text = "${homeResult.result.timeSum}"
 
     }
+
+
 
 }

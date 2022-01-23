@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,12 +28,21 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.common.collect.BiMap
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.*
+import org.techtown.plogging_android.Home.HomeFragment
 import org.techtown.plogging_android.Home.MainActivity
 import org.techtown.plogging_android.MyApplication
 import org.techtown.plogging_android.Plogging.Adapter.ImageFragment
 import org.techtown.plogging_android.Plogging.Adapter.ImageSliderAdapter
+import org.techtown.plogging_android.Plogging.Retrofit.PloggingData
+import org.techtown.plogging_android.Plogging.Retrofit.PloggingResponse
+import org.techtown.plogging_android.Plogging.Retrofit.PloggingRetrofitInterface
+import org.techtown.plogging_android.R
 import org.techtown.plogging_android.databinding.FragmentCompletePloggingBinding
+import org.techtown.plogging_android.getRetorfit
 import org.techtown.plogging_android.util.dateToString
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -48,7 +58,7 @@ class CompletePloggingFragment : Fragment() {
     var imageList = ArrayList<Bitmap>()
     var urlList = ArrayList<String>()
     var docId : String = ""                                             //현재 저장하는 doc의 Id를 저장- >이걸로 url 가져옴
-    var tempUrlList = ArrayList<String>()
+    var namelList = ArrayList<String>()
     //코루틴을 위한 Scope 생성
 
     override fun onCreateView(
@@ -62,7 +72,6 @@ class CompletePloggingFragment : Fragment() {
         urlList.clear()                                             //url 리스트  초기화
 
         setViewpager()
-//        setLauncher()
         setListener()
 
         arguments?.clear()          //값 쓰고 나서 초기화 ->안하면 오류남
@@ -99,6 +108,10 @@ class CompletePloggingFragment : Fragment() {
             }
         })
 
+        binding.completeKcalNum.text = arguments?.getString("cal")
+        binding.completeTimeNum.text = arguments?.getString("time")
+        binding.completeDistanceNum.text = arguments?.getString("dis")
+
     }
 
 
@@ -114,17 +127,6 @@ class CompletePloggingFragment : Fragment() {
         }
         binding.completeNoSaveBtn.setOnClickListener {
 
-            //imgaes 폴더에 docId.jpg로 저장  지도 캡처시진 저장
-//            var imgRef = MyApplication.storage.reference.child("${tempUrlList[0]}")
-//            Log.d("getUrl","${tempUrlList[0]} , ${tempUrlList[1]}")
-//            Glide.with(this)
-//                .load(imgRef)
-//                .into(binding.test)
-//
-//            imgRef = MyApplication.storage.reference.child("${tempUrlList[1]}")
-//            Glide.with(this)
-//                .load(imgRef)
-//                .into(binding.test2)
         }
     }
 
@@ -203,7 +205,8 @@ class CompletePloggingFragment : Fragment() {
         var imgRef = storageRef.child("images/${docId}_map.jpg")
         val file_map = getImageUri(requireContext(), imageList[0])    //지도 Bitmap으로 uri 만들기
         val mapUploadTask = imgRef.putFile(file_map)
-        tempUrlList.add("images/${docId}_map.jpg")
+        namelList.add("images/${docId}_auth.jpg")
+        namelList.add("images/${docId}_map.jpg")
         //Task가 성공적으로 처리되는지.
         val mapUrlTask = mapUploadTask.continueWith { task->
             if(!task.isSuccessful){
@@ -226,7 +229,6 @@ class CompletePloggingFragment : Fragment() {
         //인증 사진 저장
         val file_auth = getImageUri(requireContext(), imageList[1])
         imgRef = storageRef.child("images/${docId}_auth.jpg")
-        tempUrlList.add("images/${docId}_auth.jpg")
         imgRef.putFile(file_auth).continueWith { task->
             if(!task.isSuccessful){
                 task.exception?.let{
@@ -243,6 +245,15 @@ class CompletePloggingFragment : Fragment() {
                 Log.d("getUrl","Auth url 받기 실패")
             }
         }
+
+        val mHandler = Handler()
+        mHandler.postDelayed(Runnable {
+            var plog = PloggingData(binding.completeKcalNum.text.toString(),
+                binding.completeDistanceNum.text.toString(),
+                binding.completeTimeNum.text.toString(),
+                namelList)
+            savePlog(plog)
+        },1000)
     }
 
     //uploadTask 리스너 이용하면 굳이 밑에 함수 필요없음
@@ -262,30 +273,26 @@ class CompletePloggingFragment : Fragment() {
         return Uri.parse(path)
     }
 
-//    //다운로드 Url 리턴 받기
-//    fun getUrl(){
-//        Log.d("getUrl" ,"실행")
-//        val storage = MyApplication.storage
-//        val storageRef = storage.reference
-//        val imgRef_map = storageRef.child("images/${docId}_map.jpg")
-//        imgRef_map.downloadUrl.addOnSuccessListener {
-//            urlList.add(it.toString())
-//            Log.d("getUrl" , "Map url 받기 성공")
-//        }.addOnFailureListener {
-//            Log.d("getUrl" , "Map Url 받기 실패")
-//        }
-//
-//        val imgRef_auth = storageRef.child("images/${docId}_auth.jpg")
-//        imgRef_auth.downloadUrl.addOnSuccessListener {
-//            urlList.add(it.toString())
-//            Log.d("getUrl" , "Auth url 받기 성공")
-//        }.addOnFailureListener {
-//            Log.d("getUrl" , "Auth url 받기 실패")
-//        }
-//    }
+    fun savePlog(plog : PloggingData){
+        val saveService = getRetorfit().create(PloggingRetrofitInterface::class.java)
+        saveService.savePlog(MyApplication.jwt!! , plog).enqueue(object : Callback<PloggingResponse>{
+            override fun onResponse(
+                call: Call<PloggingResponse>,
+                response: Response<PloggingResponse>
+            ) {
+                val resp = response.body()!!
+                when(resp.code){
+                  1000 -> {Toast.makeText(requireContext(),"저장 성공" ,Toast.LENGTH_SHORT).show()}
+                  else -> {}
+                }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+            }
+
+            override fun onFailure(call: Call<PloggingResponse>, t: Throwable) {
+
+            }
+        })
     }
+
 
 }

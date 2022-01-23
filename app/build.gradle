@@ -113,5 +113,11 @@ dependencies {
     //Gson 라이브러리 추가
     implementation 'com.google.code.gson:gson:2.8.7'
 
+    //RxJave
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+
+
 }
 

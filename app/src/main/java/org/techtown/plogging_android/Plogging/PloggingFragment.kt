@@ -206,6 +206,9 @@ class PloggingFragment : Fragment(),OnMapReadyCallback {
             replace(R.id.main_container_fl , CompletePloggingFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable("snapshot" , bitmap)
+                    putString("cal", binding.completeKcalNum.text.toString())
+                    putString("dis" , binding.completeDistanceNum.text.toString())
+                    putString("time",binding.completeTimeNum.text.toString())
                 }
             })
                 .addToBackStack(null).commitAllowingStateLoss()
