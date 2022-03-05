@@ -201,14 +201,16 @@ class PloggingFragment : Fragment(),OnMapReadyCallback {
         //캡처해서 넘기기
         naverMap.takeSnapshot { bitmap ->
             Log.d("snapShot" ,"${bitmap} 촬영")
-
+            val cal = binding.ploggingKcalNum.text.toString()
+            val dis = binding.ploggingDistanceNum.text.toString()
+            val time = binding.ploggingTimeNum.text.toString()
             requireActivity().supportFragmentManager.beginTransaction().
             replace(R.id.main_container_fl , CompletePloggingFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable("snapshot" , bitmap)
-                    putString("cal", binding.completeKcalNum.text.toString())
-                    putString("dis" , binding.completeDistanceNum.text.toString())
-                    putString("time",binding.completeTimeNum.text.toString())
+                    putString("cal", cal)
+                    putString("dis" , dis)
+                    putString("time", time)
                 }
             })
                 .addToBackStack(null).commitAllowingStateLoss()

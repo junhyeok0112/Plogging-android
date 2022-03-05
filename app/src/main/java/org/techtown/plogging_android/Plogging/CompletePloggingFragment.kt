@@ -51,14 +51,14 @@ import kotlin.coroutines.CoroutineContext
 
 class CompletePloggingFragment : Fragment() {
 
-    lateinit var binding: FragmentCompletePloggingBinding
-    lateinit var filePath: String                                        //capture path
-    lateinit var file: File
-    lateinit var imageSliderAdapter: ImageSliderAdapter
-    var imageList = ArrayList<Bitmap>()
-    var urlList = ArrayList<String>()
-    var docId : String = ""                                             //현재 저장하는 doc의 Id를 저장- >이걸로 url 가져옴
-    var namelList = ArrayList<String>()
+    private lateinit var binding: FragmentCompletePloggingBinding
+    private lateinit var filePath: String                                        //capture path
+    private lateinit var file: File
+    private lateinit var imageSliderAdapter: ImageSliderAdapter
+    private var imageList = ArrayList<Bitmap>()
+    private var urlList = ArrayList<String>()
+    private var docId : String = ""                                             //현재 저장하는 doc의 Id를 저장- >이걸로 url 가져옴
+    private var namelList = ArrayList<String>()
     //코루틴을 위한 Scope 생성
 
     override fun onCreateView(
@@ -84,7 +84,7 @@ class CompletePloggingFragment : Fragment() {
 
         return binding.root
     }
-
+        //showLoadingDialog -> dismissLoadging
     //Viewpager setting
     fun setViewpager() {
 
